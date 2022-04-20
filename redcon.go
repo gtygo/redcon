@@ -697,6 +697,13 @@ func NewReader(rd io.Reader) *Reader {
 	}
 }
 
+func NewReaderWithBuf(bfrd *bufio.Reader) *Reader {
+	return &Reader{
+		rd:  bfrd,
+		buf: make([]byte, 4096),
+	}
+}
+
 func parseInt(b []byte) (int, bool) {
 	if len(b) == 1 && b[0] >= '0' && b[0] <= '9' {
 		return int(b[0] - '0'), true
